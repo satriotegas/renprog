@@ -1,7 +1,3 @@
-<?php
-session_start();
-?>
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -96,26 +92,45 @@ session_start();
                 <div class="mb-3">
                     <label class="form-label">Pilih Opsi:</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" value="Option1">
+                        <input class="form-check-input" type="radio" name="step" id="flexRadioDefault1" value="step1" checked>
                         <label class="form-check-label" for="flexRadioDefault1">
-                            Opsi 1
+                            Selesai Edit
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" value="Option2" checked>
+                        <input class="form-check-input" type="radio" name="step" id="flexRadioDefault2" value="step2">
                         <label class="form-check-label" for="flexRadioDefault2">
-                            Opsi 2
+                            Permohonan Softfile
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" value="Option3">
-                        <label class="form-check-label" for="flexRadioDefault3">
-                            Opsi 3
+                        <input class="form-check-input" type="radio" name="step" id="flexRadioDefault2" value="step3">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Speng Softfile
                         </label>
                     </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="step" id="flexRadioDefault2" value="step4" >
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Speng Cetak
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="step" id="flexRadioDefault2" value="step5">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Selesai Cetak
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="step" id="flexRadioDefault2" value="step6">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Distribusi
+                        </label>
+                    </div>
+                    
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <input type="submit" name="submit" class="btn btn-primary" value="SUBMIT"  style="width: 200px;font-weight:bold">
             </form>
         </div>
     </section>
@@ -165,33 +180,76 @@ session_start();
     <script>
         // Handle item selection and quantity
         let selectedItems = [];
+        
+        // Perbarui tampilan daftar item
+        function updateItemDisplay() {
+            // Hapus semua item dengan quantity <= 0
+            selectedItems = selectedItems.filter(i => i.quantity > 0);
 
-        // When an item is added
-        document.getElementById('addItem').addEventListener('click', function() {
+            // Perbarui tampilan daftar item
+            document.getElementById('itemDisplay').value = selectedItems.map(i => `${i.item} (${i.quantity})`).join(', ');
+
+            // Simpan data terbaru di hidden input
+            document.getElementById('selectedItems').value = JSON.stringify(selectedItems);
+        }
+
+        // Tambahkan item
+        document.getElementById('addItem').addEventListener('click', function () {
             let itemList = document.getElementById('itemList');
             let itemQuantity = document.getElementById('itemQuantity').value;
 
-            // Validate that the quantity is provided and at least one item is selected
+            // Validasi bahwa quantity diisi dan minimal satu item dipilih
             if (itemQuantity && itemList.selectedOptions.length > 0) {
                 let selectedItemNames = Array.from(itemList.selectedOptions).map(option => option.text);
-                
-                selectedItemNames.forEach(item => {
-                    selectedItems.push({ item: item, quantity: itemQuantity });
+
+                selectedItemNames.forEach(itemName => {
+                    // Cek apakah item sudah ada di selectedItems
+                    let existingItem = selectedItems.find(i => i.item === itemName);
+
+                    if (existingItem) {
+                        // Tambahkan quantity ke item yang sudah ada
+                        existingItem.quantity = parseInt(existingItem.quantity) + parseInt(itemQuantity);
+                    } else {
+                        // Jika item belum ada, tambahkan sebagai item baru
+                        selectedItems.push({ item: itemName, quantity: parseInt(itemQuantity) });
+                    }
                 });
 
-                // Display the selected items in the input field
-                document.getElementById('itemDisplay').value = selectedItems.map(i => `${i.item} (${i.quantity})`).join(', ');
-
-                // Store the selected items as a JSON string in the hidden input field
-                document.getElementById('selectedItems').value = JSON.stringify(selectedItems);
+                // Perbarui tampilan dan simpan
+                updateItemDisplay();
             }
         });
 
-        // When the save button is clicked
-        document.getElementById('saveItems').addEventListener('click', function() {
-            // Save items and close modal
-            $('#itemModal').modal('hide');
+        // Kurangi atau hapus item
+        document.getElementById('removeItem').addEventListener('click', function () {
+            let itemList = document.getElementById('itemList');
+            let itemQuantity = document.getElementById('itemQuantity').value;
+
+            // Validasi bahwa quantity diisi dan minimal satu item dipilih
+            if (itemQuantity && itemList.selectedOptions.length > 0) {
+                let selectedItemNames = Array.from(itemList.selectedOptions).map(option => option.text);
+
+                selectedItemNames.forEach(itemName => {
+                    // Cek apakah item sudah ada di selectedItems
+                    let existingItem = selectedItems.find(i => i.item === itemName);
+
+                    if (existingItem) {
+                        // Kurangi quantity
+                        existingItem.quantity = parseInt(existingItem.quantity) - parseInt(itemQuantity);
+
+                        // Hapus item jika quantity <= 0
+                        if (existingItem.quantity <= 0) {
+                            selectedItems = selectedItems.filter(i => i.item !== itemName);
+                        }
+                    }
+                });
+
+                // Perbarui tampilan dan simpan
+                updateItemDisplay();
+            }
         });
+
+
     </script>
     <?php
     require 'footer.php';
