@@ -19,10 +19,10 @@ session_start();
     <!-- Main Content -->
   <div class="container my-5">
     <h1 class="text-center">Welcome to Renprog</h1>
-    <p class="lead text-center">Aplikasi Renprog dirancang untuk memantau progres pencetakan dan pengelolaan program kerja Subdis Renprog</p>
+    <p class="lead text-center">Aplikasi Renprog untuk memantau progres pencetakan dan pengelolaan program kerja Subdis Renprog</p>
     
     <!-- List Group for Features -->
-    <h3 class="text-center">Fitur Utama</h3>
+    <h3 class="text-center">Fitur</h3>
     <div class="list-group">
       <a href="index.php" class="list-group-item list-group-item-action">
         <h5 class="mb-1">Home</h5>

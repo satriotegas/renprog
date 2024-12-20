@@ -12,15 +12,6 @@
     <?php
     require 'navbar.php';
     ?>
-
-    <!-- Home Section -->
-    <section id="home" class="py-5 bg-light">
-        <div class="container">
-            <h1 class="text-center">Welcome to Renprog</h1>
-            <p class="text-center">Platform untuk memantau progres pencetakan dan program kerja Subdis Renprog.</p>
-        </div>
-    </section>
-
     <!-- Form Section -->
     <section id="form" class="py-5">
         <div class="container">
@@ -132,42 +123,6 @@
 
                 <input type="submit" name="submit" class="btn btn-primary" value="SUBMIT"  style="width: 200px;font-weight:bold">
             </form>
-        </div>
-    </section>
-
-    <!-- Progres Section -->
-    <section id="progress" class="py-5 bg-light">
-        <div class="container">
-            <h2 class="mb-4">Progres Cetak</h2>
-            <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead class="table-dark">
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Nama Item</th>
-                            <th scope="col">Nomor Surat</th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Keterangan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Item A</td>
-                            <td>12345</td>
-                            <td>Dalam Proses</td>
-                            <td>Deskripsi singkat item A</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Item B</td>
-                            <td>67890</td>
-                            <td>Selesai</td>
-                            <td>Deskripsi singkat item B</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
         </div>
     </section>
 

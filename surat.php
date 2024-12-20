@@ -16,37 +16,6 @@ session_start();
     <?php
     require 'navbar.php';
     ?>
-
-    <!-- Home Section -->
-    <section id="home" class="py-5 bg-light">
-        <div class="container">
-            <h1 class="text-center">Welcome to Renprog</h1>
-            <p class="text-center">Platform untuk memantau progres pencetakan dan program kerja Subdis Renprog.</p>
-        </div>
-    </section>
-
-    <!-- Form Section -->
-    <section id="form" class="py-5">
-        <div class="container">
-            <h2 class="mb-4">Form Input Surat</h2>
-            <form>
-                <div class="mb-3">
-                    <label for="itemName" class="form-label">Nama Item</label>
-                    <input type="text" class="form-control" id="itemName" placeholder="Masukkan nama item">
-                </div>
-                <div class="mb-3">
-                    <label for="suratNumber" class="form-label">Nomor Surat</label>
-                    <input type="text" class="form-control" id="suratNumber" placeholder="Masukkan nomor surat">
-                </div>
-                <div class="mb-3">
-                    <label for="description" class="form-label">Deskripsi</label>
-                    <textarea class="form-control" id="description" rows="3" placeholder="Masukkan deskripsi"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-        </div>
-    </section>
-
     <!-- Progres Section -->
     <section id="progress" class="py-5 bg-light">
         <div class="container">
