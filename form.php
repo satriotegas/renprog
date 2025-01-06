@@ -57,10 +57,10 @@ require "conn.php";
                                 <h5 class="modal-title" id="itemModalLabel">Pilih Item dan Jumlah</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
+                            <div class="modal-body" >
                                 <div class="mb-3">
                                     <label for="itemList" class="form-label">Item:</label>
-                                    <select class="form-select" id="itemList" multiple>
+                                    <select class="form-select" id="itemList" multiple style="height: 50vh;">
                                         <!-- tampilkan option item stok -->
                                         <?php
                                         $sql = "SELECT * FROM item";
