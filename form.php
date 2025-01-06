@@ -1,3 +1,6 @@
+<?php
+require "conn.php";
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -58,10 +61,27 @@
                                 <div class="mb-3">
                                     <label for="itemList" class="form-label">Item:</label>
                                     <select class="form-select" id="itemList" multiple>
-                                        <option value="item1">Item 1</option>
-                                        <option value="item2">Item 2</option>
-                                        <option value="item3">Item 3</option>
-                                        <option value="item4">Item 4</option>
+                                        <!-- tampilkan option item stok -->
+                                        <?php
+                                        $sql = "SELECT * FROM item";
+                                        $result = $conn->query($sql);
+                                        
+                                        if ($result->num_rows > 0) {
+                                          // output data of each row
+                                          while($row = $result->fetch_assoc()) {
+                                            $id = $row['id'];
+                                            $item = $row['item'];
+                                            $kategori = $row['cat'];
+                                            $nomor = $row['number'];
+                                            $title = $row['title'];
+                                        
+                                            echo "<option value={$item}>{$item}</option>";
+                                          }
+                                        } else {
+                                          echo "no results";
+                                        }
+                                        $conn->close();
+                                        ?>
                                     </select>
                                 </div>
                                 <div class="mb-3">
@@ -203,7 +223,6 @@
                 updateItemDisplay();
             }
         });
-
 
     </script>
     <?php
