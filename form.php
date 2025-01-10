@@ -1,4 +1,5 @@
 <?php
+session_start();
 require "conn.php";
 ?>
 <!doctype html>
@@ -19,26 +20,26 @@ require "conn.php";
     <section id="form" class="py-5">
         <div class="container">
             <h2 class="mb-4">Form Input Surat</h2>
-            <form action="form.php" method="post">
+            <form action="forminput.php" method="post">
                 <div class="mb-3">
                     <label for="surat" class="form-label">Nomor :</label>
-                    <input type="text" class="form-control" name="surat" id="surat" placeholder="Masukkan Nomor Surat">
+                    <input type="text" class="form-control" name="surat" id="surat" placeholder="Masukkan Nomor Surat" required>
                 </div>
                 <div class="mb-3">
                     <label for="tanggal" class="form-label">Tanggal :</label>
-                    <input type="date" class="form-control" name="tanggal" id="tanggal" placeholder="Masukkan Tanggal Surat">
+                    <input type="date" class="form-control" name="tanggal" id="tanggal" placeholder="Masukkan Tanggal Surat" required>
                 </div>
                 <div class="mb-3">
                     <label for="perihal" class="form-label">Perihal :</label>
-                    <input type="text" class="form-control" name="perihal" id="perihal" placeholder="Perihal">
+                    <input type="text" class="form-control" name="perihal" id="perihal" placeholder="Perihal" required>
                 </div>
                 <div class="mb-3">
                     <label for="dari" class="form-label">Dari :</label>
-                    <input type="text" class="form-control" name="dari" id="dari" placeholder="Pengirim Surat">
+                    <input type="text" class="form-control" name="dari" id="dari" placeholder="Pengirim Surat" required>
                 </div>
                 <div class="mb-3">
                     <label for="kepada" class="form-label">Kepada :</label>
-                    <input type="text" class="form-control" name="kepada" id="kepada" placeholder="Tujuan Surat">
+                    <input type="text" class="form-control" name="kepada" id="kepada" placeholder="Tujuan Surat" required>
                 </div>
                 
                 <!-- Item Selection -->
@@ -51,7 +52,7 @@ require "conn.php";
                 
                 <!-- Modal for Item Selection -->
                 <div class="modal fade" id="itemModal" tabindex="-1" aria-labelledby="itemModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                    <div class="modal-dialog modal-right">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="itemModalLabel">Pilih Item dan Jumlah</h5>
@@ -101,7 +102,7 @@ require "conn.php";
                 
 
                 <div class="mb-3">
-                    <label class="form-label">Pilih Opsi:</label>
+                    <label class="form-label">Status Surat:</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="step" id="flexRadioDefault1" value="step1" checked>
                         <label class="form-check-label" for="flexRadioDefault1">
